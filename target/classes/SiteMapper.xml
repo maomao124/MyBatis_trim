@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="SiteMapper">
+
+    <select id="select" resultType="Site">
+        SELECT *
+        FROM website
+        <trim prefix="where" prefixOverrides="and">
+            <if test="name != null and name !=''">
+                AND name LIKE concat ('%',#{name},'%')
+            </if>
+            <if test="url!= null">
+                AND url like concat ('%',#{url},'%')
+            </if>
+        </trim>
+    </select>
+</mapper>
